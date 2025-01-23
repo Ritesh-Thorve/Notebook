@@ -4,9 +4,10 @@ const { body, validationResult } = require('express-validator');
 const User = require('../modules/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const fetchUser = require('../middleware/fetchUser')
 const JWT_SECRET = "ritesh";
 
-// Route to create a new user
+// Route 1) to create a new user
 router.post(
     '/createuser',
     [
@@ -42,14 +43,14 @@ router.post(
             }
             const authtoken = jwt.sign(data,JWT_SECRET) 
             return res.status(201).json({authtoken});
-        } catch (err) {
-            console.error(err.message);
+        } catch (error) {
+            console.error(error.message);
             return res.status(500).json({ error: "Internal Server Error" });
         }
     }
 );
 
-//Authenticating user with currect credentials
+//Route 2)Authenticating user with currect credentials : no login required
 router.post(
     '/login',
     [
@@ -81,15 +82,28 @@ router.post(
             }
             const authtoken = jwt.sign(data,JWT_SECRET) 
             return res.status(201).json({authtoken});
-        } catch(err){
-            console.error(err.message);
+        } catch(error){
+            console.error(error.message);
             return res.status(500).json({ error: "Internal Server Error" });
         }
+});
 
+
+//Route 3)Get user data through login
+router.post('/getuser', fetchUser, async (req,res) =>{
+    try {
+        const userId = req.user.id;
+        const user = await User.findById(userId).select('-password');
+        res.send(user);
+    } catch (error) {
+        console.error(error.message);
+        return res.status(500).json({ error: "Internal Server Error" });        
+    }
 })
+
 
 module.exports = router;
 
-
+ 
 
 
