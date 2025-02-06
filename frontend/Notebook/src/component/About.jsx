@@ -12,10 +12,12 @@ function About() {
   
 
   return (
+    <>
+    <Navbar/>
     <div>
-      <Navbar/>
       Hi thses is About page {a.state.name} and age {a.state.age}
     </div>
+    </>
   )
 }
 

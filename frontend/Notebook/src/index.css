@@ -1,1 +1,9 @@
 @import "tailwindcss";
+
+
+.active {
+    font-weight: bold;
+    color: #f97316;
+    text-decoration: none;
+  }
+  
