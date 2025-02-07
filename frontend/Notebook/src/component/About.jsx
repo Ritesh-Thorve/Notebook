@@ -1,21 +1,13 @@
 import React, { useEffect } from 'react'
-import Navbar from './Navbar' 
-import { useContext } from 'react'
-import NoteContext from '../context/note/NoteContext'
+import Navbar from './Navbar'  
 
-function About() {
-  const a = useContext(NoteContext)
-   
-  useEffect(() => {
-    a.update();
-  }, [])
-  
+function About() { 
 
   return (
     <>
     <Navbar/>
     <div>
-      Hi thses is About page {a.state.name} and age {a.state.age}
+      Hi thses is About page and age  
     </div>
     </>
   )

@@ -1,17 +1,15 @@
 import React from "react" 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './component/Home'
-import About from "./component/About"; 
-import NoteProvider from "./context/note/NoteProvider";
-import Navbar from "./component/Navbar";
+import About from './component/About'
+import NoteState from "./context/note/NoteState.jsx";
 
 function App() { 
 
   return (
      
     <>
-    <NoteProvider> 
-    <div className="container">
+    <NoteState>  
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
@@ -19,9 +17,8 @@ function App() {
       <Routes>
         <Route path="/about" element={<About />} />
       </Routes>
-    </Router> 
-    </div>
-    </NoteProvider>
+    </Router>  
+    </NoteState>
     </>
   )
 }

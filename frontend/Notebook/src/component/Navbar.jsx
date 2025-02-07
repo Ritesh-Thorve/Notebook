@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom"; 
+import Home from "./Home";
+import About from "./About";
 
 function Navbar() {
   let location = useLocation();
@@ -15,7 +17,7 @@ function Navbar() {
           <li className="font-black text-2xl">Note-Book</li>
           <li className="mt-1">
             <Link className={`${location.pathname === "/" ? "active" : ""} text no-underline`} to="/">Home</Link>
-          </li>
+          </li> 
           <li className="mt-1">
             <Link className={`${location.pathname === "/about" ? "active" : ""}  no-underline`} to="/about">About</Link>
           </li>
