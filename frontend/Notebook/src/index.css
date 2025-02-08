@@ -6,4 +6,8 @@
     color: #f97316;
     text-decoration: none;
   }
+
+i:hover{
+  cursor: pointer;
+}
   

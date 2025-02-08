@@ -6,6 +6,7 @@ function About() {
   return (
     <>
     <Navbar/>
+    
     <div>
       Hi thses is About page and age  
     </div>

@@ -1,72 +1,57 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import NoteContext from "./NoteContext";
 
-const NoteState = (props) =>{
-    const initaialNotes = [
-        {
-          "_id": "67a4e0b2f3169f628e3de734",
-          "user": "67937d19217e50cd86cb44e4",
-          "title": "Ritesh",
-          "description": "Ritu don hu",
-          "tag": "#bro",
-          "date": "2025-02-06T16:17:54.287Z",
-          "__v": 0
-        },
-        {
-          "_id": "67a4e0d4f3169f628e3de737",
-          "user": "67937d19217e50cd86cb44e4",
-          "title": "Pappa",
-          "description": "pappa ji bol pappaji",
-          "tag": "#bro",
-          "date": "2025-02-06T16:18:28.815Z",
-          "__v": 0
-        },
-        {
-          "_id": "67a4e0b2f3169f628e3de734",
-          "user": "67937d19217e50cd86cb44e4",
-          "title": "Ritesh",
-          "description": "Ritu don hu",
-          "tag": "#bro",
-          "date": "2025-02-06T16:17:54.287Z",
-          "__v": 0
-        },
-        {
-          "_id": "67a4e0d4f3169f628e3de737",
-          "user": "67937d19217e50cd86cb44e4",
-          "title": "Pappa",
-          "description": "pappa ji bol pappaji",
-          "tag": "#bro",
-          "date": "2025-02-06T16:18:28.815Z",
-          "__v": 0
-        },
-        {
-          "_id": "67a4e0b2f3169f628e3de734",
-          "user": "67937d19217e50cd86cb44e4",
-          "title": "Ritesh",
-          "description": "Ritu don hu",
-          "tag": "#bro",
-          "date": "2025-02-06T16:17:54.287Z",
-          "__v": 0
-        },
-        {
-          "_id": "67a4e0d4f3169f628e3de737",
-          "user": "67937d19217e50cd86cb44e4",
-          "title": "Pappa",
-          "description": "pappa ji bol pappaji",
-          "tag": "#bro",
-          "date": "2025-02-06T16:18:28.815Z",
-          "__v": 0
-        }
-      ]
+const NoteState = (props) => {
+  const initialNotes = [
+    {
+      "_id": "67a4e0b2f3169f628e3de7341",
+      "user": "67937d19217e50cd86cb44e4",
+      "title": "Ritesh",
+      "description": "Ritu don hu",
+      "tag": "#bro",
+      "date": "2025-02-06T16:17:54.287Z",
+      "__v": 0
+    },
+    {
+      "_id": "67a4e0d4f3169f628e3de7372",
+      "user": "67937d19217e50cd86cb44e4",
+      "title": "Pappa",
+      "description": "pappa ji bol pappaji",
+      "tag": "#bro",
+      "date": "2025-02-06T16:18:28.815Z",
+      "__v": 0
+    }
+  ];
 
-      const [notes, setNotes] = useState(initaialNotes);
+  const [notes, setNotes] = useState(initialNotes);
 
-      return(
-        <NoteContext.Provider value={{notes,setNotes}}>
-            {props.children}
-        </NoteContext.Provider>
-      )
+  const addNote = (title, description, tag) => {
+    console.log("Adding note...");
+    const note = {
+      "_id": "67a4e0d4f3169f628e3de7376",
+      "user": "67937d19217e50cd86cb44e4",
+      "title": title,
+      "description": description,
+      "tag": tag,
+      "date": new Date().toISOString(),
+      "__v": 0
+    };
+    setNotes([...notes, note]);
+  };
 
-}
+  const deleteNote = () => {
+    // Functionality not yet implemented
+  };
 
-export default NoteState
+  const editNote = () => {
+    // Functionality not yet implemented
+  };
+
+  return (
+    <NoteContext.Provider value={{ notes, setNotes, addNote, deleteNote, editNote }}>
+      {props.children}
+    </NoteContext.Provider>
+  );
+};
+
+export default NoteState;
