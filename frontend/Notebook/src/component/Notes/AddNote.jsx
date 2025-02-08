@@ -19,7 +19,7 @@ function AddNote() {
 
   return ( 
     <div className="container my-3">
-      <h1 className="text-center text-2xl font-bold">Add Notes</h1>
+      <h1 className="text-center text-2xl font-bold  ">Add Notes</h1>
       <form>
         <div className="mb-3">
           <label htmlFor="title" className="form-label">Title</label>
