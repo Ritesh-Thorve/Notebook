@@ -5,29 +5,33 @@ import AddNote from './AddNote';
 
 function Notes() {
     const context = useContext(NoteContext);
-    const { notes, getNotes } = context;
-     const [note, setNote] = useState({ etitle: "", edescription: "",  etag: "" });
+    const { notes, getNotes, editNote } = context;
+    const [note, setNote] = useState({ id: "", etitle: "", edescription: "", etag: "" });
+
+
 
     const handleClick = (e) => {
         console.log("Updating Note", note)
-        e.preventDefault();
-      };
-    
-      const onChange = (e) => {
+        editNote(note.id, note.etitle, note.edescription, note.etag)
+        refClose.current.click();
+    };
+
+    const onChange = (e) => {
         setNote({ ...note, [e.target.name]: e.target.value });
-      };
-    
+    };
+
 
     useEffect(() => {
         getNotes();
     }, [])
 
-    const updateNote = (currentNote) => { 
-            ref.current.click();
-            setNote({etitle: currentNote.title, edescription: currentNote.description, etag: currentNote.tag}) 
+    const updateNote = (currentNote) => {
+        ref.current.click();
+        setNote({id: currentNote._id, etitle: currentNote.title, edescription: currentNote.description, etag: currentNote.tag })
     }
 
     const ref = useRef(null)
+    const refClose = useRef(null);
 
     return (
         <>
@@ -58,25 +62,18 @@ function Notes() {
 
                                 <div className="mb-3">
                                     <label htmlFor=" etag" className="form-label"> etag</label>
-                                    <input type="text" className="form-control text-sm" id="etag" name=" etag"  required value={note. etag} onChange={onChange} />
-                                </div> 
-                            </form> 
+                                    <input type="text" className="form-control text-sm" id="etag" name=" etag" required value={note.etag} onChange={onChange} />
+                                </div>
+                            </form>
                         </div>
 
                         <div className="modal-footer">
-                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" className="btn btn-secondary" ref={refClose} data-bs-dismiss="modal">Close</button>
                             <button type="button" className="btn btn-primary" onClick={handleClick} >Save changes</button>
                         </div>
                     </div>
                 </div>
             </div>
-
-
-
-
-
-
-
 
 
             <div className='max-w-screen'>

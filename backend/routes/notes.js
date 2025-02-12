@@ -41,24 +41,50 @@ router.post('/addnote', fetchUser, [
         });
 
 //Route 3) Updating an existing note, Login required
+// router.put('/updatenote/:id', fetchUser, async (req, res) => {
+//         const { title, description, tag } = req.body;
+//         const newNote = {};
+//         if (title) { newNote.title = title};
+//         if (description) { newNote.description = description };
+//         if (tag) { newNote.tag = tag };
+
+
+//         let note = await Notes.findById(req.params._id);
+//         if (!note) { return res.status(404).send("Not found") }
+
+//         if (note.user.toString() !== req.user.id) {
+//                 return res.status(401).send("Not Allowed");
+//         }
+
+//         note = await Notes.findByIdAndUpdate(req.params.id, {$set: newNote}, { new: true });
+//         res.json({note});
+// })
 router.put('/updatenote/:id', fetchUser, async (req, res) => {
-        const { title, description, tag } = req.body;
-        const newNote = {};
-        if (title) { newNote.title = title};
-        if (description) { newNote.description = description };
-        if (tag) { newNote.tag = tag };
-
-
-        let note = await Notes.findById(req.params.id);
-        if (!note) { return res.status(404).send("Not found") }
-
-        if (note.user.toString() !== req.user.id) {
+        try {
+            const { title, description, tag } = req.body;
+            const newNote = {};
+            if (title) newNote.title = title;
+            if (description) newNote.description = description;
+            if (tag) newNote.tag = tag;
+    
+            // Fetch the note using the correct ID
+            let note = await Notes.findById(req.params.id);
+            if (!note) return res.status(404).send("Not found");
+    
+            // Check if the user owns this note
+            if (note.user.toString() !== req.user.id) {
                 return res.status(401).send("Not Allowed");
+            }
+    
+            // Update the note
+            note = await Notes.findByIdAndUpdate(req.params.id, { $set: newNote }, { new: true });
+            res.json({ note });
+        } catch (error) {
+            console.error(error);
+            res.status(500).send("Internal Server Error");
         }
-
-        note = await Notes.findByIdAndUpdate(req.params.id, {$set: newNote}, { new: true });
-        res.json({note});
-})
+    });
+    
 
  //Route 3) Deleting an existing note, Login required
 router.delete('/deletenote/:id', fetchUser, async (req, res) => {
