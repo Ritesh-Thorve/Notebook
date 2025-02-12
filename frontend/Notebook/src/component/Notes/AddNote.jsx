@@ -22,11 +22,11 @@ function AddNote() {
       <form>
         <div className="mb-3">
           <label htmlFor="title" className="form-label">Title</label>
-          <input type="text" className="form-control" name="title" id="title" required value={note.title} onChange={onChange} />
+          <input type="text" className="form-control" name="title" id="title" required minLength={5} value={note.title} onChange={onChange} />
         </div>
         <div className="mb-3">
           <label htmlFor="description" className="form-label">Description</label>
-          <input type="text" className="form-control" id="description" name="description" required value={note.description} onChange={onChange} />
+          <input type="text" className="form-control" id="description" name="description" required minLength={5} value={note.description} onChange={onChange} />
         </div>
 
         <div className="mb-3">
@@ -34,7 +34,7 @@ function AddNote() {
           <input type="text" className="form-control text-sm" id="tag" name="tag" placeholder='Ex. #hardwork ' required value={note.tag} onChange={onChange} />
         </div>
 
-        <button type="submit" className="btn btn-primary" onClick={handleClick}>Add</button>
+        <button disabled={note.title<5 || note.description<5} type="submit" className="btn btn-primary" onClick ={handleClick}>Add</button>
       </form>
     </div>
   );

@@ -8,10 +8,13 @@ function Notes() {
     const { notes, getNotes, editNote } = context;
     const [note, setNote] = useState({ id: "", etitle: "", edescription: "", etag: "" });
 
+    
+    const ref = useRef(null)
+    const refClose = useRef(null);
 
-
-    const handleClick = (e) => {
-        console.log("Updating Note", note)
+    //updating New Note
+    
+    const handleClick = (e) => { 
         editNote(note.id, note.etitle, note.edescription, note.etag)
         refClose.current.click();
     };
@@ -30,8 +33,6 @@ function Notes() {
         setNote({id: currentNote._id, etitle: currentNote.title, edescription: currentNote.description, etag: currentNote.tag })
     }
 
-    const ref = useRef(null)
-    const refClose = useRef(null);
 
     return (
         <>
