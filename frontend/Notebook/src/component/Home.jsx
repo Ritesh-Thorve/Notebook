@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import Navbar from './Navbar'  
-import Notes from './Notes/notes' 
+import Notes from './Notes/Notes' 
 
 
 function Home() {

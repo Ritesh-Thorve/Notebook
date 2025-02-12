@@ -1,10 +1,10 @@
 const connectDB = require('./db');
 const express = require('express');
 const app = express()
-const PORT = 5001;
-const cors = require('cors')
+const PORT = 5000;
+const cors = require('cors');
 
-app.use(cors())
+app.use(cors());
 app.use(express.json());
 
 connectDB();
