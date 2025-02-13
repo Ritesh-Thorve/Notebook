@@ -1,8 +1,10 @@
 import React,{useState} from 'react'
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../Navbar'
+import { useAlert } from '../../context/note/alert/alertContext';
 
 function Signup() {
+  const alert = useAlert()
   const [credentials, setCredentials] = useState({name:'',  email:'', password:''});
   const navigate = useNavigate();
 
@@ -21,8 +23,9 @@ function Signup() {
         if(json.success){
           localStorage.setItem('token',json.auththoken);
           navigate('/');
+          alert.success('account created successfully')
         }else{
-          alert('These user already exists try new email')
+          alert.error('These user already exists try new email')
         }
       
   }

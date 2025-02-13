@@ -1,6 +1,8 @@
 import React, {useState}from 'react'
 import Navbar from '../Navbar'
 import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+
 
 function Login() { 
     const [credentials, setCredentials] = useState({email:'', password:''})
@@ -20,8 +22,9 @@ function Login() {
         if(json.success){
             localStorage.setItem('token', json.authtoken)
             navigate("/");
+            toast.success('Login successfully')
         }else{
-            alert('please enter valid credentials')
+            toast.error('please enter valid credentials')
             
         }
     }
@@ -49,6 +52,7 @@ function Login() {
                     </div>
                 </div>
             </form>
+            <ToastContainer/>
         </div>
     )
 }
