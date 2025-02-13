@@ -16,16 +16,20 @@ router.post(
         body('password', 'Password must be at least 5 characters long').isLength({ min: 5 }),
     ],
     async (req, res) => {
+        const success = false;
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
-            return res.status(400).json({ errors: errors.array() });
+            success = false;
+            return res.status(400).json({success, errors: errors.array() });
         }
 
         try {
             // Check if the user already exists with email
             let user = await User.findOne({ email: req.body.email });
+            let success = false;
             if (user) {
-                return res.status(400).json({ error: "A user with this email already exists" });
+                success = false;
+                return res.status(400).json({success, error: "A user with this email already exists" });
             }
             // Create the user
             const salt = await bcrypt.genSalt(10);
@@ -42,7 +46,8 @@ router.post(
                 }
             }
             const authtoken = jwt.sign(data,JWT_SECRET) 
-            return res.status(201).json({authtoken});
+            success = true
+            return res.status(201).json({success, authtoken});
         } catch (error) {
             console.error(error.message);
             return res.status(500).json({ error: "Internal Server Error" });
