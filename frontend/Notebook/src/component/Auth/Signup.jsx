@@ -20,12 +20,12 @@ function Signup() {
       });
       const json = await response.json()
       console.log(json);   
-        if(json.success){
+        if(!json.success){
+          alert.error('These user already exists try new email')
+        }else{
           localStorage.setItem('token',json.auththoken);
           navigate('/');
           alert.success('account created successfully')
-        }else{
-          alert.error('These user already exists try new email')
         }
       
   }

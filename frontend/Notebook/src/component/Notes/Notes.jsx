@@ -1,10 +1,12 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import NoteContext from '../../context/note/noteContext';
-import Noteitem from './NoteItem';
+import Noteitem from './Noteitem';
 import AddNote from './AddNote';
 import { useAlert } from '../../context/note/alert/alertContext';
 
 function Notes() {
+    const navigate = useNavigate();
     const alert = useAlert();
     const context = useContext(NoteContext);
     const { notes, getNotes, editNote } = context;
@@ -15,26 +17,23 @@ function Notes() {
 
     // Fetch notes on component mount
     useEffect(() => {
-        getNotes();
-    }, []);
+        const token = localStorage.getItem("token");
+        if (!token) {
+            navigate("/login");
+        } else {
+            getNotes();
+        }
+    }, [navigate, getNotes]);
 
     // Handle saving edited note
     const handleClick = (e) => {
-        e.preventDefault();
-
-        // Validate input fields
+        e.preventDefault(); 
         if (note.etitle.length < 5 || note.edescription.length < 5) {
             alert.error('Title and Description must be at least 5 characters long.');
             return;
-        }
-
-        // Edit the note
+        } 
         editNote(note.id, note.etitle, note.edescription, note.etag);
-
-        // Close the modal
-        refClose.current.click();
-
-        // Show success toast
+        refClose.current.click(); 
         alert.success('Note Updated Successfully');
     };
 
