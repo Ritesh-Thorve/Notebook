@@ -117,7 +117,7 @@ const AboutPage = () => {
 
       {/* Footer */}
       <footer className="text-center   border-t border-gray-200">
-        <p >© 2023 NoteMate App. All rights reserved.</p>
+        <p >© 2025 NoteMate App. All rights reserved by - Ritesh Thorve</p>
       </footer>
     </div>
   );

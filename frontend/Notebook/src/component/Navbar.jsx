@@ -16,11 +16,11 @@ function Navbar() {
   useEffect(() => {}, [location]);
 
   return (
-    <nav className="bg-white shadow-md  top-0 left-0 w-full flex justify-between items-center px-8 h-12 border-b border-gray-200 z-50">
+    <nav className="bg-white shadow-md  top-0 left-0 w-full flex justify-between items-center px-8 h-16 border-b border-gray-200 z-50">
       {/* 🔹 Logo & Navigation Links */}
       <div className="flex items-center gap-8">
-        <h3 className="text-sm">Note-Mate</h3>
-         <div className="pr-0">
+        <h2 className="font-bold">Note-Mate</h2>
+         <div className="pt-2">
          <ul className="flex gap-6 ">
           <li>
             <Link

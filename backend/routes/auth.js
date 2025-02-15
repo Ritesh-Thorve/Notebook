@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require('express');
 const router = express.Router();
 const { body, validationResult } = require('express-validator');
@@ -5,7 +6,7 @@ const User = require('../modules/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const fetchUser = require('../middleware/fetchUser')
-const JWT_SECRET = "ritesh";
+const JWT_SECRET = process.env.JWT_SECRET;
 
 // Route 1) to create a new user
 router.post(

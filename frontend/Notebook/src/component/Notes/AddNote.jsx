@@ -34,7 +34,10 @@ function AddNote() {
 
   return (
     <div className="container mx-auto p-4 max-w-4xl">
-      <h1 className="text-center text-2xl md:text-3xl font-bold mb-6">Add Notes</h1>
+      <div className='flex justify-center gap-3'>
+      <img src="Notebook_Logo2.jpg" alt=""  className="w-10  h-10"/>
+      <h3 className="text-center text-2xl md:text-3xl font-bold mb-6">Add Notes</h3>
+      </div>
       <form className="bg-white p-6 rounded-lg shadow-md">
         {/* Title Field */}
         <div className="mb-4">
