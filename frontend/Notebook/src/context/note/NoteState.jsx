@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useAlert } from "./alert/alertContext";
 
 const NoteState = (props) => {
-  const url = "http://localhost:5000"
+  const url = "http://localhost:9000"
   const initialNotes = []
   const [notes, setNotes] = useState(initialNotes)
   const alert = useAlert()
