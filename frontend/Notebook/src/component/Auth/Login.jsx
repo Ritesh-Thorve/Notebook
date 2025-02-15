@@ -2,11 +2,13 @@ import React, {useState}from 'react'
 import Navbar from '../Navbar'
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
+import { useAlert } from '../../context/note/alert/alertContext';
 
 
 function Login() { 
     const [credentials, setCredentials] = useState({email:'', password:''})
     const navigate = useNavigate();
+    const alert = useAlert()
 
     const handleClick = async (e) =>{
         e.preventDefault();   
@@ -17,14 +19,13 @@ function Login() {
             }, 
             body: JSON.stringify({email: credentials.email, password: credentials.password})
         });
-        const json = await response.json()
-        console.log(json);
+        const json = await response.json() 
         if(json.success){
             localStorage.setItem('token', json.authtoken)
             navigate("/");
-            toast.success('Login successfully')
+            alert.success('Login successfully')
         }else{
-            toast.error('please enter valid credentials')
+            alert.error('please enter valid credentials')
             
         }
     }

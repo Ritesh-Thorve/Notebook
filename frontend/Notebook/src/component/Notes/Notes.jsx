@@ -11,7 +11,6 @@ function Notes() {
     const context = useContext(NoteContext);
     const { notes, getNotes, editNote } = context;
     const [note, setNote] = useState({ id: "", etitle: "", edescription: "", etag: "" });
-
     const ref = useRef(null);
     const refClose = useRef(null);
 

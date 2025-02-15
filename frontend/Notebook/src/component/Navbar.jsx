@@ -1,10 +1,20 @@
 import React, { useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Home from "./Home";
 import About from "./About";
+import { useAlert } from "../context/note/alert/alertContext";
+
 
 function Navbar() {
   let location = useLocation();
+  const alert = useAlert()
+  const navigate = useNavigate()
+
+  const handleLogout = () =>{
+    localStorage.removeItem('token');
+    alert.success('Log Out Successfully')
+    navigate('/login')
+  }
 
   useEffect(() => {
   }, [location]);
@@ -23,10 +33,10 @@ function Navbar() {
         </ul>
       </div>
 
-      <div>
-         <Link to={'/login'}><button type="button"className="btn btn-outline-secondary mx-1 ">Login</button></Link>
-         <Link to={'/signup'}><button type="button"className="btn btn-outline-secondary mx-1 ">Signup</button></Link>         
-      </div>
+      {!localStorage.getItem('token')?<div>
+         <Link to={'/login'}><button type="button" className="btn btn-outline-secondary mx-1 ">Login</button></Link>
+         <Link to={'/signup'}><button type="button" className="btn btn-outline-secondary mx-1 ">Signup</button></Link>         
+      </div>:<button onClick={handleLogout} className="btn btn-outline-secondary mx-1 " >Log Out</button>}
     </nav>
   );
 }

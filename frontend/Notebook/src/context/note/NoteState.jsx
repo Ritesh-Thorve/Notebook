@@ -1,10 +1,12 @@
 import NoteContext from "./noteContext";
 import React, { useState } from "react";
+import { useAlert } from "./alert/alertContext";
 
 const NoteState = (props) => {
   const url = "http://localhost:5000"
   const initialNotes = []
   const [notes, setNotes] = useState(initialNotes)
+  const alert = useAlert()
 
   // Get all Notes
   const getNotes = async () => {
@@ -19,7 +21,7 @@ const NoteState = (props) => {
       const json = await response.json()
       setNotes(json)
     } catch (error) {
-      console.error("Failed to add note:", error);
+      alert.error("Failed to add note:", error);
     }
 
   }
@@ -39,13 +41,13 @@ const NoteState = (props) => {
       const note = await response.json();
 
       if (!response.ok) {
-        console.error("Error adding note:", note);
+        alert.error("Error adding note:", note);
         return;
       }
 
       setNotes([...notes, note]); // spread operator to update state with existing note
     } catch (error) {
-      console.error("Failed to add note:", error);
+      alert.error("Failed to add note:", error);
     }
   };
 
@@ -63,7 +65,7 @@ const NoteState = (props) => {
       const newNotes = notes.filter((note) => { return note._id !== id })
       setNotes(newNotes)
     } catch (error) {
-      console.error("Failed to add note:", error);
+      alert.error("Failed to add note:", error);
     }
   }
 
@@ -95,7 +97,7 @@ const NoteState = (props) => {
       }
       setNotes(newNotes);
     } catch (error) {
-      console.error("Failed to add note:", error);
+      alert.error("Failed to add note:", error);
     }
   }
 

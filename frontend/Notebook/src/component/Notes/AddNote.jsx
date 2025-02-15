@@ -27,7 +27,6 @@ function AddNote() {
       // Show success toast
       alert.success('Note Added Successfully');
     } catch (error) {
-      console.error('Error adding note:', error);
       alert.error('Failed to add note. Please try again.');
     }
   };
@@ -54,10 +53,7 @@ function AddNote() {
             value={note.title}
             onChange={onChange}
             aria-describedby="titleHelp"
-          />
-          <div id="titleHelp" className="form-text">
-            Title must be at least 5 characters long.
-          </div>
+          /> 
         </div>
         <div className="mb-3">
           <label htmlFor="description" className="form-label">
@@ -73,10 +69,7 @@ function AddNote() {
             value={note.description}
             onChange={onChange}
             aria-describedby="descriptionHelp"
-          />
-          <div id="descriptionHelp" className="form-text">
-            Description must be at least 5 characters long.
-          </div>
+          /> 
         </div>
         <div className="mb-3">
           <label htmlFor="tag" className="form-label">
@@ -87,7 +80,7 @@ function AddNote() {
             className="form-control text-sm"
             id="tag"
             name="tag"
-            placeholder="Ex. #hardwork"
+
             value={note.tag}
             onChange={onChange}
           />
