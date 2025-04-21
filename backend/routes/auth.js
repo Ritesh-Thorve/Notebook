@@ -71,10 +71,13 @@ router.post(
         }
 
         //checking the user that exists or not for login
-        const {email,password} = req.body;
-        try{
-            let user = await User.findOne({email})
-            if(!user){
+        const {email, password} = req.body;
+        try {
+            if (typeof email !== "string") {
+                return res.status(400).json({ error: "Invalid email format" });
+            }
+            let user = await User.findOne({ email: { $eq: email } });
+            if (!user) {
                 return res.status(400).json({error: "Try to login with correct credentials"});
             }
             const comparePass = await bcrypt.compare(password,user.password);
