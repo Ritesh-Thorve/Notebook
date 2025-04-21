@@ -1,4 +1,9 @@
-@import "tailwindcss";
+@import "tailwindcss/preflight";
+@tailwind utilities;
+@tailwind utilities;
+
+
+
 @import 'react-toastify/dist/ReactToastify.css';
 
 .active {
