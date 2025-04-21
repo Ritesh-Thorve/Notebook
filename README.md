@@ -22,8 +22,8 @@ Notebook App is a web-based application built using React that allows users to c
 ## Tech Stack
 - **Frontend**: React, React Router
 - **Backend**: Node.js, Express.js
-- **Database**: MongoDB (if used)
-- **Authentication**: JWT, bcrypt
+- **Database**: MongoDB 
+- **Authentication**: JWT, bcrypt js
 
 ## Installation
 
