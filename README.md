@@ -52,12 +52,12 @@ Make sure you have Node.js and npm/yarn installed on your system.
 
 4. **Start the Backend Server**
    ```sh
-   npm run server
+   npm run start
    ```
 
 5. **Start the Frontend**
    ```sh
-   npm start
+   npm run dev
    ```
 
 ## API Endpoints
