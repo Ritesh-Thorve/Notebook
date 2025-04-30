@@ -52,7 +52,7 @@ Make sure you have Node.js and npm/yarn installed on your system.
 
 4. **Start the Backend Server**
    ```sh
-   npm run start
+   npm start
    ```
 
 5. **Start the Frontend**
